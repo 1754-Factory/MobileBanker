@@ -1,7 +1,6 @@
 import CENTRO_TOKEN_LIST from "@node-fi/default-token-list";
+import { TokenConfig } from "@node-fi/react-native-sdk";
 import { ChainId } from "@ubeswap/sdk";
-
-import TokenMetaData from "./TokenMetaData.json";
 
 type TokenDetails = {
   [address: string]: {
@@ -18,6 +17,41 @@ type TokenDetails = {
   };
 };
 
+export const SUPPORTED_TOKENS: readonly string[] = [
+  "0x122013fd7dF1C6F636a5bb8f03108E876548b455",
+  "0x46c9757C5497c5B1f2eb73aE79b6B67D119B0B58",
+  "0x73a210637f6F6B7005512677Ba6B3C96bb4AA44B",
+  "0x765DE816845861e75A25fCA122bb6898B8B1282a",
+  "0xD8763CBa276a3738E6DE85b4b3bF5FDed6D6cA73",
+  "0xe8537a3d056DA446677B9E9d6c5dB704EaAb4787",
+];
+export const TOKEN_OVERRIDES: readonly TokenConfig[] = [
+  {
+    address: "0x122013fd7dF1C6F636a5bb8f03108E876548b455",
+    name: "Ethereum",
+    symbol: "ETH",
+  },
+  {
+    address: "0x73a210637f6F6B7005512677Ba6B3C96bb4AA44B",
+    name: "Mobius",
+  },
+  {
+    address: "0xe8537a3d056DA446677B9E9d6c5dB704EaAb4787",
+    name: "Real",
+    symbol: "RL",
+  },
+  {
+    address: "0xD8763CBa276a3738E6DE85b4b3bF5FDed6D6cA73",
+    name: "Euro",
+    symbol: "EUR",
+  },
+  {
+    address: "0x765DE816845861e75A25fCA122bb6898B8B1282a",
+    name: "US Dollar",
+    symbol: "USD",
+  },
+];
+
 export type NFT = {
   address: string;
   name: string;
@@ -32,25 +66,6 @@ export type NFT_MetaData = {
     [field: string]: string;
   };
 };
-
-export const metaData: TokenDetails = TokenMetaData.reduce(
-  (accum: TokenDetails, cur) => ({
-    ...accum,
-    [cur.Address]: {
-      name: cur.Name,
-      symbol: cur.Ticker,
-      color: cur.Color,
-      stable: cur.Stable === 1,
-      description: cur.Description,
-      priority: cur.Priority ?? 0,
-      basic: cur.Basic,
-      gradient: cur.Gradient,
-      address: cur.Address,
-      type: cur.Type,
-    },
-  }),
-  {}
-);
 
 export const DEFAULT_TOKEN_COLOR = "#E0EBFF";
 
@@ -90,106 +105,6 @@ export const dispayTokenBlacklist: { [address: string]: string } = {
   ["0x918146359264C492BD6934071c6Bd31C854EDBc3"]: "mcUSD", // mcUSD
   ["0xE273Ad7ee11dCfAA87383aD5977EE1504aC07568"]: "mcEUR", // mcEUR
   ["0x9802d866fdE4563d088a6619F7CeF82C0B991A55"]: "mcREAL",
-};
-
-const CPUNKS = "0x9f46B8290A6D41B28dA037aDE0C3eBe24a5D1160";
-const CAK = "0x1eCD77075F7504bA849d47DCe4cdC9695f1FE942";
-const CESPRESSO = "0x7DD354dB71fbFa060070BC0a05d24F87d24A31B7";
-const ARIval = "0xA07467dbc8F9FF849FbF6534462D25986A872D76";
-const NODE = "0xE1c361176dD31db653003492eae2Df51D3528207";
-const TEST = "0xc1FFBf9aFE4F5a0D6395Cb2c9a6a0B8d9FD561db";
-
-export const WHITE_LISTED_NFTs: { [address: string]: NFT } = {
-  [CAK]: {
-    name: "Celo Apes Kingdom",
-    symbol: "CAK",
-    address: "0x1eCD77075F7504bA849d47DCe4cdC9695f1FE942",
-  },
-  [CPUNKS]: {
-    name: "CeloPunks",
-    symbol: "CPUNK",
-    address: "0x9f46B8290A6D41B28dA037aDE0C3eBe24a5D1160",
-  },
-  [NODE]: {
-    name: "Node Launch",
-    symbol: "NODE",
-    address: NODE,
-  },
-  [ARIval]: {
-    name: "ARIval 2022",
-    symbol: "ARIval",
-    address: ARIval,
-  },
-  [TEST]: {
-    name: "Test",
-    symbol: "TST",
-    address: TEST,
-  },
-
-  // [ARI]: {
-  //   name: "Node Pass",
-  //   symbol: "ARI",
-  //   address: ARI,
-  // },
-
-  // [CESPRESSO]: {
-  //   name: "Celo Espresso",
-  //   symbol: "CESPRESSO",
-  //   address: CESPRESSO,
-  // },
-};
-
-export const DEFAULT_NFT_METADATA: {
-  [address: string]: { [id: number]: NFT_MetaData };
-} = {
-  // [CESPRESSO]: {
-  // 417: {
-  //   id: "417",
-  //   imageUri:
-  //     "https://ipfs.io/ipfs/QmZwPaCMoFqbgcqRcqdCS5BWUJ7pznmSqBc3gHUzB9wRbL",
-  // },
-  //   59: {
-  //     id: "59",
-  //     imageUri:
-  //       "https://ipfs.io/ipfs/QmRqtnWinLe7qdYCa9PyvHPnnswdPMXumbTZYNggApw9kK",
-  //   },
-  // },
-  [CPUNKS]: {
-    9997: {
-      id: "9997",
-      imageUri: "https://celopunks.club/nft/9997.png",
-    },
-    // 9976: {
-    //   id: "9976",
-    //   imageUri:
-    //     "https://ipfs.io/ipfs/QmdKZj1v7cVYuFPZjg5xCVGrsDzW4rB29SzZZahHBDi3dw/9976.png",
-    // },
-    // 9966: {
-    //   id: "9966",
-    //   imageUri: "https://celopunks.club/nft/9966.png",
-    // },
-    749: {
-      id: "749",
-      imageUri: "https://celopunks.club/nft/749.png",
-    },
-  },
-  [CAK]: {
-    6: {
-      id: "6",
-      imageUri:
-        "https://ipfs.io/ipfs/bafybeiasnbk7bztvmytiqf2a5aw5jmivvnxhrdwtp72ihbpjrlh33g32ee/apes/6.png",
-    },
-    // 10: {
-    //   id: "10",
-    //   imageUri:
-    //     "https://ipfs.io/ipfs/bafybeiasnbk7bztvmytiqf2a5aw5jmivvnxhrdwtp72ihbpjrlh33g32ee/apes/10.png",
-    // },
-    // 3: {
-    //   id: "3",
-    //   imageUri:
-    //     "https://ipfs.io/ipfs/bafybeiasnbk7bztvmytiqf2a5aw5jmivvnxhrdwtp72ihbpjrlh33g32ee/apes/3.png",
-    // },
-  },
 };
 
 export const TOKENS_BY_NAME = CENTRO_TOKEN_LIST.tokens

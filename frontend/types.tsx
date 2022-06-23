@@ -82,20 +82,6 @@ export type OnboardParamList = {
   };
 };
 
-export type ManageTabParamList = {
-  ManageRoot: undefined;
-  ManageRamp: undefined;
-  ManageCico: undefined;
-  ManageCicoWallet: undefined;
-  SettingScreen: undefined;
-  DefaultCurrency: undefined;
-  ConnectedDapps: undefined;
-  DefaultPriceCurrency: undefined;
-  AccountKey: undefined;
-  SelectLanguage: undefined;
-  AccountKey: undefined;
-};
-
 export type RootTabScreenProps<
   Screen extends keyof RootTabParamList & EarnTabParamList
 > = CompositeScreenProps<
@@ -103,22 +89,13 @@ export type RootTabScreenProps<
   NativeStackScreenProps<RootStackParamList & EarnTabParamList>
 >;
 
-export type OnboardTabScreenProps<
-  Screen extends keyof OnboardParamList
-> = NativeStackScreenProps<OnboardParamList, Screen>;
-
-export type SwapTabScreenProps<
-  Screen extends keyof SwapTabParamList
-> = NativeStackScreenProps<SwapTabParamList, Screen>;
-
 export type MicroLoanScreenProps<
   Screen extends keyof MicroLoanParamList
 > = NativeStackScreenProps<MicroLoanParamList, Screen>;
 
-export type ManageScreenProps<
-  Screen extends keyof ManageTabParamList
-> = NativeStackScreenProps<ManageTabParamList, Screen>;
-// export type EarnScreenProps<Screen extends keyof EarnTabParamList> = CompositeScreenProps<NativeStackScreenProps<EarnTabParamList>
+export type OnboardTabScreenProps<
+  Screen extends keyof OnboardParamList
+> = NativeStackScreenProps<OnboardParamList, Screen>;
 
 export type SVG_Type = React.ComponentType<{
   height?: number;

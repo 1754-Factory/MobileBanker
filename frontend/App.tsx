@@ -1,85 +1,57 @@
-import { HARDHAT_PORT, HARDHAT_PRIVATE_KEY } from '@env';
-import { useWalletConnect } from '@walletconnect/react-native-dapp';
-import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import localhost from 'react-native-localhost';
-import Web3 from 'web3';
+import env from "process";
 
-import Hello from '../artifacts/contracts/Hello.sol/Hello.json';
+import { NodeKitProvider } from "@node-fi/react-native-sdk";
+import { ChainId, Token } from "@node-fi/sdk-core";
+import React from "react";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 
-const styles = StyleSheet.create({
-  center: { alignItems: 'center', justifyContent: 'center' },
+import { SUPPORTED_TOKENS, TOKEN_OVERRIDES } from "./constants/Tokens";
+import Navigator from "./navigation";
+
+export const styles = StyleSheet.create({
+  center: { alignItems: "center" },
   // eslint-disable-next-line react-native/no-color-literals
-  white: { backgroundColor: 'white' },
+  white: { backgroundColor: "white" },
+  red: { backgroundColor: "red" },
+  blue: { backgroundColor: "blue" },
+  square: { width: 100, height: 100 },
 });
 
-const shouldDeployContract = async (web3, abi, data, from: string) => {
-  const deployment = new web3.eth.Contract(abi).deploy({ data });
-  const gas = await deployment.estimateGas();
-  const {
-    options: { address: contractAddress },
-  } = await deployment.send({ from, gas });
-  return new web3.eth.Contract(abi, contractAddress);
-};
-
 export default function App(): JSX.Element {
-  const connector = useWalletConnect();
-  const [message, setMessage] = React.useState<string>('Loading...');
-  const web3 = React.useMemo(
-    () => new Web3(new Web3.providers.HttpProvider(`http://${localhost}:${HARDHAT_PORT}`)),
-    [HARDHAT_PORT]
-  );
-  React.useEffect(() => {
-    void (async () => {
-      const { address } = await web3.eth.accounts.privateKeyToAccount(HARDHAT_PRIVATE_KEY);
-      const contract = await shouldDeployContract(
-        web3,
-        Hello.abi,
-        Hello.bytecode,
-        address
-      );
-      setMessage(await contract.methods.sayHello('React Native').call());
-    })();
-  }, [web3, shouldDeployContract, setMessage, HARDHAT_PRIVATE_KEY]);
-  const connectWallet = React.useCallback(() => {
-    return connector.connect();
-  }, [connector]);
-  const signTransaction = React.useCallback(async () => {
-    try {
-       await connector.signTransaction({
-        data: '0x',
-        from: '0xbc28Ea04101F03aA7a94C1379bc3AB32E65e62d3',
-        gas: '0x9c40',
-        gasPrice: '0x02540be400',
-        nonce: '0x0114',
-        to: '0x89D24A7b4cCB1b6fAA2625Fe562bDd9A23260359',
-        value: '0x00',
-      });
-    } catch (e) {
-      console.error(e);
-    }
-  }, [connector]);
-  const killSession = React.useCallback(() => {
-    return connector.killSession();
-  }, [connector]);
-  return (
-    <View style={[StyleSheet.absoluteFill, styles.center, styles.white]}>
-      <Text testID="tid-message">{message}</Text>
-      {!connector.connected && (
-        <TouchableOpacity onPress={connectWallet}>
-          <Text>Connect a Wallet</Text>
-        </TouchableOpacity>
-      )}
-      {!!connector.connected && (
-        <>
-          <TouchableOpacity onPress={signTransaction}>
-            <Text>Sign a Transaction</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={killSession}>
-            <Text>Kill Session</Text>
-          </TouchableOpacity>
-        </>
-      )}
+  const loadingComponent = (
+    <View style={[StyleSheet.absoluteFill, styles.center, styles.blue]}>
+      <Text>Loading</Text>
     </View>
+  );
+
+  return (
+    <>
+      <NodeKitProvider
+        loadingComponent={loadingComponent}
+        eoaOnly
+        apiKey={"c72d0ce2d50a447d874da93b7e44abb1"} // sandbox api key - will only work on alfajores
+        tokenWhitelist={new Set(SUPPORTED_TOKENS)}
+        tokenDetailsOverride={TOKEN_OVERRIDES.slice()}
+        customTokens={[
+          new Token(
+            44787,
+            "0x874069Fa1Eb16D44d622F2e0Ca25eeA172369bC1",
+            18,
+            "cUSD",
+            "Cello Dollar"
+          ),
+          new Token(
+            44787,
+            "0xF194afDf50B03e69Bd7D057c1Aa9e10c9954E4C9",
+            18,
+            "CELO",
+            "Cello"
+          ),
+        ]}
+        chainId={ChainId.Alfajores}
+      >
+        <Navigator />
+      </NodeKitProvider>
+    </>
   );
 }
