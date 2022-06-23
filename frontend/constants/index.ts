@@ -59,7 +59,7 @@ export enum DateRange {
   ALL = -1,
 }
 
-export const dateRangeToReadable: { [range in DateRange]: string } = {
+export const dateRangeToReadable: { readonly [range in DateRange]: string } = {
   [DateRange["1D"]]: "day",
   [DateRange["1H"]]: "hour",
   [DateRange["1M"]]: "month",
@@ -68,7 +68,9 @@ export const dateRangeToReadable: { [range in DateRange]: string } = {
   [DateRange.ALL]: "all",
 };
 
-export const dateRangeToDefaultInterval: { [range in DateRange]: number } = {
+export const dateRangeToDefaultInterval: {
+  readonly [range in DateRange]: number;
+} = {
   [DateRange["1D"]]: 1,
   [DateRange["1H"]]: 0,
   [DateRange["1M"]]: 3,
