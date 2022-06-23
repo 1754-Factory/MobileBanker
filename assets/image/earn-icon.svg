@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="225" height="220.5" viewBox="0 0 225 220.5">
+  <g id="Group_1005" data-name="Group 1005" transform="translate(-11.5 -2060)">
+    <line id="Line_192" data-name="Line 192" x2="205" transform="translate(21.5 2270.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="20"/>
+    <line id="Line_193" data-name="Line 193" x2="175" transform="translate(36.5 2244.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="20"/>
+    <line id="Line_194" data-name="Line 194" y2="105" transform="translate(49.5 2139.5)" fill="none" stroke="#000" stroke-width="20"/>
+    <line id="Line_195" data-name="Line 195" y2="105" transform="translate(99.5 2139.5)" fill="none" stroke="#000" stroke-width="20"/>
+    <line id="Line_196" data-name="Line 196" y2="105" transform="translate(149.5 2139.5)" fill="none" stroke="#000" stroke-width="20"/>
+    <line id="Line_197" data-name="Line 197" y2="105" transform="translate(199.5 2139.5)" fill="none" stroke="#000" stroke-width="20"/>
+    <line id="Line_198" data-name="Line 198" x2="175" transform="translate(36.5 2139.5)" fill="none" stroke="#000" stroke-linecap="round" stroke-width="10"/>
+    <path id="Polygon_1" data-name="Polygon 1" d="M100.5,0,201,46H0Z" transform="translate(24 2070)" stroke="#000" stroke-linejoin="round" stroke-width="20"/>
+  </g>
+</svg>

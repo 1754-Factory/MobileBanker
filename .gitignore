@@ -133,5 +133,5 @@ buck-out/
 .expo/
 web-build/
 dist/
-
+.DS_Store
 # @end expo-cli

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="44.176" height="44.175" viewBox="0 0 44.176 44.175">
+  <g id="split-bill" transform="translate(0 0)">
+    <g id="Group_1669" data-name="Group 1669" transform="translate(0 0)">
+      <g id="stable-yield-icon" transform="translate(44.176 44.175) rotate(180)">
+        <g id="Ellipse_608" data-name="Ellipse 608" transform="translate(0 0)" fill="#eaf0ff" stroke="#2661fe" stroke-width="2">
+          <ellipse cx="22.088" cy="22.087" rx="22.088" ry="22.087" stroke="none"/>
+          <ellipse cx="22.088" cy="22.087" rx="21.088" ry="21.087" fill="none"/>
+        </g>
+      </g>
+    </g>
+    <path id="Path_1339" data-name="Path 1339" d="M0,8.506V0" transform="translate(18.874 22.088) rotate(90)" fill="none" stroke="#2661fe" stroke-linecap="round" stroke-width="2.5"/>
+    <path id="Path_1340" data-name="Path 1340" d="M0,0V5.074l6.555,6.638,6.818-6.7V0" transform="translate(31.444 15.428) rotate(90)" fill="none" stroke="#2661fe" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+  </g>
+</svg>

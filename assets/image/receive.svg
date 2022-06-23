@@ -1,0 +1,10 @@
+<svg id="receive" xmlns="http://www.w3.org/2000/svg" width="44.176" height="44.175" viewBox="0 0 44.176 44.175">
+  <g id="stable-yield-icon" transform="translate(44.176 44.175) rotate(180)">
+    <g id="Ellipse_608" data-name="Ellipse 608" transform="translate(0 0)" fill="#ffe8e8" stroke="#eb4141" stroke-width="2">
+      <ellipse cx="22.088" cy="22.087" rx="22.088" ry="22.087" stroke="none"/>
+      <ellipse cx="22.088" cy="22.087" rx="21.088" ry="21.087" fill="none"/>
+    </g>
+  </g>
+  <path id="Path_1337" data-name="Path 1337" d="M0,21.288V0" transform="translate(22.087 32.734) rotate(180)" fill="none" stroke="#eb4141" stroke-linecap="round" stroke-width="2.5"/>
+  <path id="Path_1338" data-name="Path 1338" d="M0,7.246,7.156,0l7.369,7.246" transform="translate(29.35 32.936) rotate(180)" fill="none" stroke="#eb4141" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"/>
+</svg>
