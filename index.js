@@ -26,8 +26,6 @@ global.atob = global.atob || require("base-64").decode;
 
 process.version = "v9.40";
 
-// Initialize i18n
-import "./frontend/i18n";
 const { registerRootComponent, scheme } = require("expo");
 const { default: App } = require("./frontend/App");
 const Linking = require("expo-linking");
