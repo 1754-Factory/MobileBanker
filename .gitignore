@@ -21,7 +21,9 @@ DerivedData
 *.ipa
 *.xcuserstate
 project.xcworkspace
-.env
+
+secrets/
+
 # Android/IntelliJ
 #
 build/
@@ -36,7 +38,8 @@ local.properties
 node_modules/
 npm-debug.log
 yarn-error.log
-
+generated
+.env*
 # BUCK
 buck-out/
 \.buckd/
@@ -133,5 +136,8 @@ buck-out/
 .expo/
 web-build/
 dist/
-.DS_Store
+
 # @end expo-cli
+
+android/app/src/main/res/raw
+drawable-*

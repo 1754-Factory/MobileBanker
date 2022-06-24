@@ -3,14 +3,17 @@
     "name": "mobile",
     "slug": "mobile",
     "version": "1.0.0",
-    "sdkVersion": "45.0.0",
-    "platforms": [
-      "ios",
-      "android",
-      "web"
-    ],
+    "scheme": "node-wallet",
+    "sdkVersion": "44.0.0",
+    "jsEngine": "jsc",
+    "platforms": ["ios", "android", "web"],
+    "owner": "nodewallet",
     "ios": {
-      "bundleIdentifier": "com.dmooers.mobile"
+      "bundleIdentifier": "node-wallet",
+      "jsEngine": "jsc"
+    },
+    "android": {
+      "package": "com.dmooers.nodewallet"
     }
   }
 }

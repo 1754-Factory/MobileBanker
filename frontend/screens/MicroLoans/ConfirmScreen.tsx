@@ -1,3 +1,4 @@
+import { useWallet } from "@node-fi/react-native-sdk";
 import BigNumber from "bignumber.js";
 import * as React from "react";
 import { Text, View } from "react-native";
@@ -6,6 +7,7 @@ import Web3 from "web3";
 import Check from "../../../assets/image/loans/timer.svg";
 import ScreenContainer from "../../components/ScreenContainer";
 import { ButtonConfirm } from "../../components/ThemedComponents";
+import { MICRO_LOAN_FACTORY } from "../../constants";
 import { LoanDetails } from "../../constants/MicroLoans";
 import { useMicroLoanForm, useUpdateLoan } from "../../state/microLoans/hooks";
 import { getColor } from "../../styles/colors";
@@ -18,6 +20,7 @@ export default function ConfirmScreen({
 }: MicroLoanScreenProps<"ConfirmScreen">) {
   const updateLoan = useUpdateLoan();
   const form = useMicroLoanForm();
+  const wallet = useWallet();
   const [txnMined, setTxnMined] = React.useState(false);
   const [loanFulfilled, setLoanFulfilled] = React.useState(false);
   const [loanNotAutoFilled, setLoanNotAutoFilled] = React.useState(false);
@@ -28,11 +31,17 @@ export default function ConfirmScreen({
     );
 
     const loanContract = getMicroLoanFactory(web3);
-    const txnHash = await loanContract.methods.requestLoan(
-      form.purpose ?? 1,
-      "100000000000",
-      form.estimatedTimeToRepay
-    );
+    const data = loanContract.methods
+      .requestLoan(form.purpose ?? 1, "100000000000", form.estimatedTimeToRepay)
+      .encodeABI();
+    await wallet
+      .signAndSendTransaction([
+        {
+          to: MICRO_LOAN_FACTORY,
+          data,
+        },
+      ])
+      .finally();
   }, []);
 
   const loan: LoanDetails = {
